@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'AppProjeto',
+    'AppFronteEnd',
     'AppProjeto.apps.AppProjetoConf',
     'AppFronteEnd.apps.AppFronteEndConf', 
     'rest_framework',
