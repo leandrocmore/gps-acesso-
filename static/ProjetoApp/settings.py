@@ -14,9 +14,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = os.environ.get("DEBUG","False").lower() == "true" 
 
+##ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')[1:-1].split(" ")
 
-
-ALLOWED_HOSTS = ['gps-acesso.onrender.com']
+## ALLOWED_HOSTS = ['gps-acesso.onrender.com']
 
 
 
