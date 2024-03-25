@@ -14,7 +14,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = os.environ.get("DEBUG","False").lower() == "true" 
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')[1:-1].split(" ")
+##ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')[1:-1].split(" ")
 
 ## ALLOWED_HOSTS = ['gps-acesso.onrender.com']
 
@@ -121,3 +121,5 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
