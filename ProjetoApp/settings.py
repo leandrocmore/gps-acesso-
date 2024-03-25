@@ -14,12 +14,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 DEBUG = os.environ.get("DEBUG","False").lower() == "true" 
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')[1:-1].split(",")
-# Adiciona 'cacagolp2-5.onrender.com' à lista de hosts permitidos se não estiver presente
+ALLOWED_HOSTS = ['gps-acesso.onrender.com']
 
-
-if 'gps-acesso.onrender.com' not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append('gps-acesso.onrender.com')
 
 
 
