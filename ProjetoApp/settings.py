@@ -32,8 +32,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AppProjeto.apps.AppProjeto',
-    'AppFronteEnd.apps.AppFronteEnd', 
+    'AppProjeto.apps.AppProjetoConf',
+    'AppFronteEnd.apps.AppFronteEndConf', 
     'rest_framework',
 ]
 
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gunicorn ProjetoApp.wsgi.application'
+WSGI_APPLICATION = 'ProjetoApp.wsgi.application'
 
 
 # Database
