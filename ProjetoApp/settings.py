@@ -18,8 +18,8 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS')[1:-1].split(",")
 # Adiciona 'cacagolp2-5.onrender.com' à lista de hosts permitidos se não estiver presente
 
 
-"""if 'cacagolp2-5.onrender.com' not in ALLOWED_HOSTS:
-    ALLOWED_HOSTS.append('cacagolp2-5.onrender.com')"""
+if 'https://gps-acesso.onrender.com' not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append('https://gps-acesso.onrender.com')
 
 
 
