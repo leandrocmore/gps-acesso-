@@ -10,8 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-## SECRET_KEY = os.environ.get("SECRET_KEY")
-SECRET_KEY = 'django-insecure-0z3sh=o5$yhoxop(dux+zmh_%f4c!isyqf-yp$chy3!xk+06x5'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
 
 DEBUG = os.environ.get("DEBUG","False").lower() == "true" 
 
@@ -114,12 +114,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-"""STATICFILES_DIRS = [
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR,'AppFronteEnd','static' ,),
     os.path.join(BASE_DIR, 'AppProjeto', 'static',)
 ]
 
-# Default primary key field type
+"""# Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
