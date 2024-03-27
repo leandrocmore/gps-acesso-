@@ -114,8 +114,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '',)
+"""STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'AppFronteEnd','static' ,),
+    os.path.join(BASE_DIR, 'AppProjeto', 'static',)
 ]
 
 # Default primary key field type
@@ -123,4 +124,4 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'StaticDeploi')
+STATIC_ROOT = os.path.join(BASE_DIR, 'StaticDeploi')"""
