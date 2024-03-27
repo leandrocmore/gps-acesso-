@@ -51,8 +51,9 @@ ROOT_URLCONF = 'ProjetoApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'AppFronteEnd'),
+        'DIRS': [
             os.path.join(BASE_DIR, 'AppProjeto'),
+            os.path.join(BASE_DIR, 'AppFronteEnd')
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -115,8 +116,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,'AppFronteEnd'),
-    os.path.join(BASE_DIR, 'AppProjeto'),
+    os.path.join(BASE_DIR,'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type
