@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
-def pesca(request, *args, **kwargs):
-    return render(request,'templates0/index.html')
+def index (request):
+    return render(request,"templates/index.html")
+
+# Create your views here.
