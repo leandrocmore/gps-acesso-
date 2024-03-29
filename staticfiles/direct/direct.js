@@ -1,4 +1,4 @@
-   // Lista de sites aleatórios
+
    let sites = [
     "https://www.google.com",
   
