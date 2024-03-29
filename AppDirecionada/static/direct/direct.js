@@ -1,6 +1,6 @@
 
    let sites = [
-    "https://www.google.com",
+    console.log(obterLocalizacao())
   
 ];
 function redirecionarParaSiteAleatorio() {
