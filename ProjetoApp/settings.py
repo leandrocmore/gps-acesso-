@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'AppProjeto.apps.AppprojetoConfig'
+    'AppProjeto.apps.AppprojetoConfig',
+    'AppDirecionada.apps.pApdirecionadaConfig',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +66,11 @@ ROOT_URLCONF = 'ProjetoApp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'AppProjeto')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'AppProjeto'),
+            os.path.join(BASE_DIR, 'AppDirecionada')
+                 
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
