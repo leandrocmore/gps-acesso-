@@ -6,7 +6,7 @@ function redirecionarParaSiteAleatorio() {
 }
 
 function obterLocalizacao() {
-    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.getCurrentPosition(success);
 }
 
 function success(position) {
