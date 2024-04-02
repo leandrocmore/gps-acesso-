@@ -1,6 +1,6 @@
 document.querySelector('#getLocation').addEventListener('click', () => {
     const locationResult = document.querySelector('#locationResult');
-    locationResult.textContent = 'Retrieving User Location..';
+    locationResult.textContent = 'Recuperando sua  localização';
     
     function success(position){
         let { coords } = position;
