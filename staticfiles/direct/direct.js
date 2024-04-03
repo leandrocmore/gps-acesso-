@@ -18,8 +18,8 @@ function success(position) {
     enviarDadosParaAPI(latitude, longitude);
 
 
-    let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
-    window.location.href = siteAleatorio;
+    //let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
+    ///window.location.href = siteAleatorio;
 }
 
 function enviarDadosParaAPI(latitude, longitude) {
